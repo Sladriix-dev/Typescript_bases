@@ -1,0 +1,38 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+body {
+    height: 100vh;
+    background-color: #111;
+}
+
+img, picture, svg, video {
+    display: block;
+    max-width: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button {
+    padding: 5px;
+}
