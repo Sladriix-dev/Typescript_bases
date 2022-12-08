@@ -21,7 +21,7 @@ function printId(id) {
     console.log(id.toString());
 }
 const compteur = document.querySelector('#compteur');
-// Permet de donner un typage à compteur
+// Permet de donner un typage à compteur mais ATTENTION à son utilisation
 let i = 0;
 const increment = (e) => {
     e.preventDefault();
@@ -31,4 +31,36 @@ const increment = (e) => {
         span.innerText = i.toString();
     }
 };
+/************** Narrowing *****************/
+// TOUJOURS Préférer le Narrowing basé sur des conditions car laisse le code gérer les cas
+function printId2(id) {
+    if (typeof id === "number") {
+        console.log((id * 3).toString);
+        // TS comprend direct que id est un nbr = narrowing
+    }
+    else {
+        console.log(id.toUpperCase());
+    }
+}
+function example(a, b) {
+    if (a === b) {
+        console.log(a);
+        // Ici Ts compare le type des deux variables pour trouver celle(s) en commun
+    }
+}
+function example2(a) {
+    if ("value" in a) {
+        return a;
+        // Ici la clé value est présente uniquement dans l'input et donc Ts comprends que a est de type HTMLInputElement
+    }
+}
+function isDate(a) {
+    return a instanceof Date;
+}
+function example3(a) {
+    if (isDate(a)) {
+        return a;
+        // a est bien une date puisqu'on a réduit son typage avec le retour de la function isDate ("a is Date")
+    }
+}
 compteur === null || compteur === void 0 ? void 0 : compteur.addEventListener('click', increment);
