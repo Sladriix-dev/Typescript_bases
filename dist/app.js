@@ -64,3 +64,23 @@ function example3(a) {
     }
 }
 compteur === null || compteur === void 0 ? void 0 : compteur.addEventListener('click', increment);
+// Prend le type de la clé mentionnée
+const user3 = { firstname: "John", lastname: "Doe" };
+function identity(arg) {
+    return arg;
+}
+const aa = identity(3);
+// Ici la variable reste de type any et ne prend pas en compte le type de l'argument que l'on passe
+function identity2(arg) {
+    return arg;
+}
+const aa2 = identity2(3);
+// Maintenant je peux préciser le type de ma variable
+const aa3 = ["aze", "aze", 3];
+// Utilisation d'un générique dans un type
+function consoleSize(arg) {
+    // Contient un objet qui a une clé length
+    console.log(arg.length);
+    return arg;
+}
+const abb = consoleSize(['3', 2]);

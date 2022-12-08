@@ -79,3 +79,43 @@ function example3 (a: Date | HTMLInputElement) {
 }
 
 compteur?.addEventListener('click', increment)
+
+/*************** Alias & Generics ****************/
+
+type Id = string | number
+type User = {firstname: string, lastname: string}
+// Permet d'avoir un quick preset de type réutilisable
+
+type Username1 = keyof User
+// Prend le preset User
+type Username2 = User['firstname']
+// Prend le type de la clé mentionnée
+
+const user3: User = {firstname: "John", lastname: "Doe"}
+
+
+
+function identity(arg: any): any {
+    return arg
+}
+const aa = identity(3)
+// Ici la variable reste de type any et ne prend pas en compte le type de l'argument que l'on passe
+
+function identity2<ArgType>(arg: ArgType): ArgType {
+    return arg
+}
+const aa2 = identity2<number>(3)
+// Maintenant je peux préciser le type de ma variable
+
+const aa3: Array<string | number> = ["aze", "aze", 3];
+// Array est un type générique
+
+type Identity<ArgType> = (arg: ArgType) => ArgType
+// Utilisation d'un générique dans un type
+
+function consoleSize<Type extends {length: number}>(arg: Type): Type {
+    // Contient un objet qui a une clé length
+    console.log(arg.length)
+    return arg
+}
+const abb = consoleSize(['3', 2])
